@@ -1,0 +1,650 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" /> <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="DESCRIPTION META TAG" />
+    <meta property="og:title" content="SOCIAL MEDIA TITLE TAG" />
+    <meta
+      property="og:description"
+      content="SOCIAL MEDIA DESCRIPTION TAG TAG"
+    />
+    <meta property="og:url" content="URL OF THE WEBSITE" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG" />
+    <meta
+      name="twitter:description"
+      content="TWITTER BANNER DESCRIPTION META TAG"
+    />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta
+      name="twitter:image"
+      content="static/images/your_twitter_banner_image.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      LogicVista: Multimodal LLM Logical Reasoning Benchmark in Visual Contexts
+    </title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="static/css/bulma.min.css" />
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="static/css/index.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+
+
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Reasoning Skill Evaluation</title>
+    <style>
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 0.8em;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .rgb1 { background-color: #6fb2a4; }
+        .rgb2 { background-color: #e3e3b3; }
+        .rgb3 { background-color: #b7dbb0; }
+        .rgb4 { background-color: #94d0a2; }
+        .rgb5 { background-color: #89cd9e; }
+        .rgb6 { background-color: #fad7c9; }
+        .rgb7 { background-color: #d7e3be; }
+        .rgb8 { background-color: #ffe6d3; }
+        .rgb9 { background-color: #579b8a; }
+        .rgb10 { background-color: #f7f0ca; }
+        .rgb11 { background-color: #f4eec2; }
+        .rgb12 { background-color: #b7dbb0; }
+        .rgb13 { background-color: #ffe8d3; }
+        .rgb14 { background-color: #fde2cd; }
+        .rgb15 { background-color: #f7f0ca; }
+        .rgb16 { background-color: #d7e3be; }
+        .rgb17 { background-color: #d1e2bc; }
+        .rgb18 { background-color: #fff6e7; }
+        .rgb19 { background-color: #f4eec2; }
+        .rgb20 { background-color: #fff6e7; }
+        .rgb21 { background-color: #dfdfca; }
+        .rgb22 { background-color: #f4eec2; }
+        .rgb23 { background-color: #ffebde; }
+        .rgb24 { background-color: #fff6e7; }
+        .rgb25 { background-color: #fff6e7; }
+        .rgb26 { background-color: #dfdfca; }
+        .rgb27 { background-color: #f4eec2; }
+        .rgb28 { background-color: #fad7c9; }
+        .rgb29 { background-color: #b7dbb0; }
+        .rgb30 { background-color: #ffebde; }
+        .rgb31 { background-color: #b7dbb0; }
+        .rgb32 { background-color: #fad7c9; }
+        .rgb33 { background-color: #fad7c9; }
+        .rgb34 { background-color: #ffe8d3; }
+        .rgb35 { background-color: #ffe6d3; }
+        .rgb36 { background-color: #e3e3b3; }
+        .rgb37 { background-color: #f7f0ca; }
+        .rgb38 { background-color: #f4eec2; }
+        .rgb39 { background-color: #ffebde; }
+        .rgb40 { background-color: #d1e2bc; }
+        .rgb41 { background-color: #ffe6d3; }
+        .rgb42 { background-color: #d7e3be; }
+        .rgb43 { background-color: #ffebde; }
+        .rgb44 { background-color: #fad7c9; }
+        .rgb45 { background-color: #d7e3be; }
+        .rgb46 { background-color: #fad7c9; }
+        .rgb47 { background-color: #f4eec2; }
+        .rgb48 { background-color: #b7dbb0; }
+        .rgb49 { background-color: #ffe6d3; }
+        .rgb50 { background-color: #f4eec2; }
+        .rgb51 { background-color: #fad7c9; }
+        .rgb52 { background-color: #fad7c9; }
+        .rgb53 { background-color: #ffe8d3; }
+        .rgb54 { background-color: #d1e2bc; }
+        .rgb55 { background-color: #d1e2bc; }
+        .rgb56 { background-color: #579b8a; }
+        .rgb57 { background-color: #579b8a; }
+        .rgb58 { background-color: #94d0a2; }
+        .rgb59 { background-color: #392c9d8f; }
+        .rgb60 { background-color: #392c9d8f; }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                <img
+                  src="static/images/logo.png"
+                  style="width: 1em; vertical-align: middle"
+                  alt="Logo"
+                />
+
+                LogicVista: Multimodal LLM Logical Reasoning Benchmark in Visual
+                Contexts
+              </h1>
+              <!-- <div class="is-size-5 publication-authors"> -->
+              <!--   <\!-- Paper authors -\-> -->
+              <!--   <span class="author-block"> -->
+              <!--     <a href="https://yijia-xiao.github.io/" target="_blank" -->
+              <!--       >Yijia Xiao</a -->
+              <!--     ><sup style="color: #ffd100">*, 1</sup>,</span -->
+              <!--   > -->
+              <!--   <span class="author-block"> -->
+              <!--     <a href="https://edwardosunny.github.io/" target="_blank" -->
+              <!--       >Edward Sun</a -->
+              <!--     ><sup style="color: #ffd100">*, 1</sup>,</span -->
+              <!--   > -->
+              <!--   <span class="author-block"> -->
+              <!--     <a href="https://helloworldlty.github.io/cv/" target="_blank" -->
+              <!--       >Tianyu Liu</a -->
+              <!--     ><sup style="color: #2774ae">2</sup>, -->
+              <!--   </span> -->
+              <!--   <span class="author-block"> -->
+              <!--     <a href="https://web.cs.ucla.edu/~weiwang/" target="_blank" -->
+              <!--       >Wei Wang</a -->
+              <!--     ><sup style="color: #ffd100">1</sup> -->
+              <!--   </span> -->
+              <!-- </div> -->
+
+              <!-- <div class="is-size-5 publication-authors"> -->
+              <!--   <span class="author-block" -->
+              <!--     ><sup style="color: #ffd100">1</sup>University of California, -->
+              <!--     Los Angeles, <sup style="color: #2774ae">2</sup>Yale -->
+              <!--     University<br /> -->
+              <!--     <\!-- Conferance name and year -\-> -->
+              <!--   </span> -->
+              <!--   <span class="eql-cntrb" -->
+              <!--     ><small -->
+              <!--       ><br /><sup>*</sup>Indicates Equal Contribution</small -->
+              <!--     ></span -->
+              <!--   > -->
+              <!-- </div> -->
+
+              <!-- <div class="column has-text-centered"> -->
+              <!--   <div class="publication-links"> -->
+              <!--     <\!-- Arxiv PDF link -\-> -->
+              <!--     <span class="link-block"> -->
+              <!--       <a -->
+              <!--         href="https://arxiv.org/pdf/2407.04973v1" -->
+              <!--         target="_blank" -->
+              <!--         class="external-link button is-normal is-rounded is-dark" -->
+              <!--       > -->
+              <!--         <span class="icon"> -->
+              <!--           <i class="fas fa-file-pdf"></i> -->
+              <!--         </span> -->
+              <!--         <span>Paper</span> -->
+              <!--       </a> -->
+              <!--     </span> -->
+
+              <!--     <\!-- Supplementary PDF link -\-> -->
+              <!--     <\!-- <span class="link-block"> -\-> -->
+              <!--     <\!--   <a -\-> -->
+              <!--     <\!--     href="static/pdfs/supplementary_material.pdf" -\-> -->
+              <!--     <\!--     target="_blank" -\-> -->
+              <!--     <\!--     class="external-link button is-normal is-rounded is-dark" -\-> -->
+              <!--     <\!--   > -\-> -->
+              <!--     <\!--     <span class="icon"> -\-> -->
+              <!--     <\!--       <i class="fas fa-file-pdf"></i> -\-> -->
+              <!--     <\!--     </span> -\-> -->
+              <!--     <\!--     <span>Supplementary</span> -\-> -->
+              <!--     <\!--   </a> -\-> -->
+              <!--     <\!-- </span> -\-> -->
+
+              <!--     <\!-- Github link -\-> -->
+              <!--     <span class="link-block"> -->
+              <!--       <a -->
+              <!--         href="https://github.com/Yijia-Xiao/LogicVista" -->
+              <!--         target="_blank" -->
+              <!--         class="external-link button is-normal is-rounded is-dark" -->
+              <!--       > -->
+              <!--         <span class="icon"> -->
+              <!--           <i class="fab fa-github"></i> -->
+              <!--         </span> -->
+              <!--         <span>Code</span> -->
+              <!--       </a> -->
+              <!--     </span> -->
+
+              <!--     <\!-- ArXiv abstract Link -\-> -->
+              <!--     <span class="link-block"> -->
+              <!--       <a -->
+              <!--         href="https://arxiv.org/abs/2407.04973v1" -->
+              <!--         target="_blank" -->
+              <!--         class="external-link button is-normal is-rounded is-dark" -->
+              <!--       > -->
+              <!--         <span class="icon"> -->
+              <!--           <i class="ai ai-arxiv"></i> -->
+              <!--         </span> -->
+              <!--         <span>arXiv</span> -->
+              <!--       </a> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div
+          class="container"
+          style="width: 840px; box-shadow: 10px 10px 5px lightblue"
+        >
+          <div id="teaser-carousel" class="carousel results-carousel">
+            <div class="item">
+              <!-- Your image here -->
+              <img src="assets/schema1.png" alt="MY ALT TEXT" />
+              <h2 class="subtitle has-text-centered">
+                Our new comprehensive MLLM evaluation benchmark, LogicVista
+              </h2>
+            </div>
+            <div class="item">
+              <!-- Your image here -->
+              <img src="assets/dataset.png" alt="MY ALT TEXT" />
+              <h2 class="subtitle has-text-centered">
+                LogicVista dataset composition
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End image carousel -->
+
+    <!-- Paper abstract -->
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Recent advancements in multimodal large language models (MLLMs)
+                have demonstrated a wide range of capabilities, from crafting
+                poetry based on an image to performing intricate mathematical
+                reasoning. Despite these achievements, there remains a notable
+                gap in the systematic evaluation of MLLMs' proficiency in
+                logical reasoning tasks, which are crucial for practical
+                applications such as navigation and puzzle-solving.
+                <br /><br />To address this gap, we propose LogicVista, a
+                comprehensive evaluation benchmark specifically designed to
+                assess the integrated logical reasoning capabilities of MLLMs in
+                visual contexts. LogicVista evaluates general logical cognition
+                abilities across five core logical reasoning tasks: deduction,
+                induction, spatial reasoning, numerical reasoning, and
+                mechanical reasoning. These tasks are further subdivided into
+                nine distinct multimodal capabilities, providing a nuanced
+                assessment of each model's strengths and weaknesses.
+                <br /><br />
+                Our benchmark consists of 448 multiple-choice questions, each
+                meticulously annotated with the correct answer and the
+                human-written reasoning behind the selection. This detailed
+                annotation allows for both open-ended and multiple-choice
+                evaluation formats, facilitating a thorough analysis of model
+                performance. The multiple-choice questions are crafted to
+                challenge the models' understanding and application of logical
+                principles in visually grounded scenarios. We conduct a
+                comprehensive evaluation of eight state-of-the-art MLLMs using
+                the LogicVista benchmark. This evaluation not only highlights
+                the current capabilities and limitations of these models in
+                logical reasoning tasks but also provides valuable insights for
+                future research and development in this area.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- DATASET SECTION -->
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 Logicvista">
+          <img
+            src="static/images/logo.png"
+            style="width: 1em; vertical-align: middle"
+            alt="Logo"
+          />
+          <span class="mathvista" style="vertical-align: middle"
+            >LogicVista Dataset</span
+          >
+        </h1>
+      </div>
+    </section>
+
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+              <p>
+                LogicVista is a comprehensive dataset designed for everyday
+                visual logical reasoning. Unlike most current datasets that
+                primarily focus on recognition, LogicVista emphasizes visual
+                reasoning, bridging the gap between recognizing objects and
+                understanding their relationships and interactions. We curate
+                our dataset from 9 close-sourced and liscensed human IQ and
+                reasoning test banks to prevent data leakage. The dataset spans
+                across 5 logical cognition tasks over 9 multimodal capabilities,
+                which highlights richness in the diversity of the samples within
+                our dataset over a variety of visual reasoning challenges. In
+                total, LogicVista includes 448 rich, human-annotated samples of
+                correct multiple-choice answers and explainations of correct
+                answers, enabling for simple MCQ evaluation and open-ended
+                evaluation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<table>
+        <caption>Model evaluation results for various multimodal LLMs on each logical reasoning skill are presented as %, with the highest possible accuracy being 100%. The highest-scoring models are highlighted in shades of green and yellow.</caption>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Inductive</th>
+                <th>Deductive</th>
+                <th>Numerical</th>
+                <th>Spatial</th>
+                <th>Mechanical</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>LLAVA7B</td>
+                <td class="rgb1">29.91%</td>
+                <td class="rgb2">29.03%</td>
+                <td class="rgb3">26.32%</td>
+                <td class="rgb4">25.32%</td>
+                <td class="rgb5">36.49%</td>
+            </tr>
+            <tr>
+                <td>LLAVA13B</td>
+                <td class="rgb6">18.69%</td>
+                <td class="rgb7">31.18%</td>
+                <td class="rgb8">20.00%</td>
+                <td class="rgb9">27.85%</td>
+                <td class="rgb10">24.32%</td>
+            </tr>
+            <tr>
+                <td>otter9B</td>
+                <td class="rgb9">31.78%</td>
+                <td class="rgb6">24.73%</td>
+                <td class="rgb11">18.95%</td>
+                <td class="rgb8">18.99%</td>
+                <td class="rgb12">21.62%</td>
+            </tr>
+            <tr>
+                <td>GPT4</td>
+                <td class="rgb13">23.36%</td>
+                <td class="rgb9">54.84%</td>
+                <td class="rgb7">24.21%</td>
+                <td class="rgb14">21.52%</td>
+                <td class="rgb9">41.89%</td>
+            </tr>
+            <tr>
+                <td>BLIP2</td>
+                <td class="rgb15">17.76%</td>
+                <td class="rgb15">23.66%</td>
+                <td class="rgb15">23.16%</td>
+                <td class="rgb13">24.05%</td>
+                <td class="rgb11">18.92%</td>
+            </tr>
+            <tr>
+                <td>LLAVANEXT-7B-mistral</td>
+                <td class="rgb8">16.82%</td>
+                <td class="rgb16">34.41%</td>
+                <td class="rgb15">23.16%</td>
+                <td class="rgb14">21.52%</td>
+                <td class="rgb8">22.97%</td>
+            </tr>
+            <tr>
+                <td>miniGPTvicuna7B</td>
+                <td class="rgb17">10.28%</td>
+                <td class="rgb18">9.68%</td>
+                <td class="rgb19">7.37%</td>
+                <td class="rgb20">3.80%</td>
+                <td class="rgb21">27.03%</td>
+            </tr>
+            <tr>
+                <td>miniGPTvicuna13B</td>
+                <td class="rgb12">13.08%</td>
+                <td class="rgb15">23.66%</td>
+                <td class="rgb22">10.53%</td>
+                <td class="rgb22">10.13%</td>
+                <td>17.57%</td>
+            </tr>
+            <tr>
+                <td>pix2struct</td>
+                <td class="rgb23">12.15%</td>
+                <td>6.45%</td>
+                <td>2.11%</td>
+                <td class="rgb19">7.59%</td>
+                <td>17.57%</td>
+            </tr>
+            <tr>
+                <td>instructBLIP-vicuna-7B</td>
+                <td class="rgb20">4.67%</td>
+                <td class="rgb8">21.51%</td>
+                <td class="rgb7">24.21%</td>
+                <td>2.53%</td>
+                <td class="rgb8">22.97%</td>
+            </tr>
+            <tr>
+                <td>instructBLIP-vicuna-13B</td>
+                <td>3.74%</td>
+                <td class="rgb19">10.75%</td>
+                <td class="rgb11">18.95%</td>
+                <td class="rgb24">5.06%</td>
+                <td>17.57%</td>
+            </tr>
+            <tr>
+                <td>instructBLIP-flan-t5-xl</td>
+                <td class="rgb13">23.36%</td>
+                <td class="rgb25">22.58%</td>
+                <td class="rgb26">22.11%</td>
+                <td class="rgb19">7.59%</td>
+                <td class="rgb27">33.78%</td>
+            </tr>
+            <tr>
+                <td>instructBLIP-flan-t5-xxl</td>
+                <td class="rgb15">17.76%</td>
+                <td class="rgb16">30.11%</td>
+                <td class="rgb7">24.21%</td>
+                <td class="rgb15">20.25%</td>
+                <td class="rgb8">22.97%</td>
+            </tr>
+            <tr>
+                <td>LLAVANEXT-7B-vicuna</td>
+                <td class="rgb4">26.17%</td>
+                <td class="rgb8">21.51%</td>
+                <td class="rgb13">25.26%</td>
+                <td class="rgb9">27.85%</td>
+                <td class="rgb10">29.73%</td>
+            </tr>
+            <tr>
+                <td>LLAVANEXT-13B-vicuna</td>
+                <td class="rgb13">22.43%</td>
+                <td class="rgb25">22.58%</td>
+                <td class="rgb3">26.32%</td>
+                <td class="rgb28">26.58%</td>
+                <td class="rgb29">25.68%</td>
+            </tr>
+            <tr>
+                <td>LLAVANEXT-34B-NH</td>
+                <td class="rgb30">20.56%</td>
+                <td class="rgb31">52.69%</td>
+                <td class="rgb9">30.53%</td>
+                <td class="rgb13">24.05%</td>
+                <td class="rgb32">40.54%</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <!-- Image carousel -->
+    <!-- <section class="hero is-small"> -->
+    <!--   <div class="hero-body"> -->
+    <!--     <div -->
+    <!--       class="container" -->
+    <!--       style="width: 840px; box-shadow: 10px 10px 5px lightblue" -->
+    <!--     > -->
+    <!--       <div id="results-carousel" class="carousel results-carousel"> -->
+    <!--         <div class="item"> -->
+    <!--           <\!-- Your image here -\-> -->
+    <!--           <img src="static/images/s1.png" alt="MY ALT TEXT" /> -->
+    <!--           <h2 class="subtitle has-text-centered"> -->
+    <!--             Example Inductive Reasoning Entry (Capability: Diagram, Graphs, -->
+    <!--             and Sequence) -->
+    <!--           </h2> -->
+    <!--         </div> -->
+    <!--         <div class="item"> -->
+    <!--           <\!-- Your image here -\-> -->
+    <!--           <img src="static/images/s2.png" alt="MY ALT TEXT" /> -->
+    <!--           <h2 class="subtitle has-text-centered"> -->
+    <!--             Example Deductive Reasoning Entry (Capability: OCR) -->
+    <!--           </h2> -->
+    <!--         </div> -->
+    <!--         <div class="item"> -->
+    <!--           <\!-- Your image here -\-> -->
+    <!--           <img src="static/images/s3.png" alt="MY ALT TEXT" /> -->
+    <!--           <h2 class="subtitle has-text-centered"> -->
+    <!--             Example Deductive Reasoning Entry (Capability: Graphs and OCR) -->
+    <!--           </h2> -->
+    <!--         </div> -->
+    <!--         <div class="item"> -->
+    <!--           <\!-- Your image here -\-> -->
+    <!--           <img src="static/images/s4.png" alt="MY ALT TEXT" /> -->
+    <!--           <h2 class="subtitle has-text-centered"> -->
+    <!--             Example Deductive Reasoning Entry (Capability: Graphs and OC) -->
+    <!--           </h2> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </section> -->
+    <!-- End image carousel -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@misc{xiao2024logicvistamultimodalllmlogical,
+      title={LogicVista: Multimodal LLM Logical Reasoning Benchmark in Visual Contexts},
+      author={Yijia Xiao and Edward Sun and Tianyu Liu and Wei Wang},
+      year={2024},
+      eprint={2407.04973},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2407.04973},
+}</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the
+                <a
+                  href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank"
+                  >Academic Project Page Template</a
+                >
+                which was adopted from the <a
+                  href="https://nerfies.github.io"
+                  target="_blank"
+                  >Nerfies</a
+                > project page. <br />
+                This website is licensed under a
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  target="_blank"
+                  >Creative Commons Attribution-ShareAlike 4.0 International
+                  License</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+    <!-- Default Statcounter code for LogicVista Project Page
+https://logicvista.github.io/ -->
+    <script type="text/javascript">
+      var sc_project = 13019910;
+      var sc_invisible = 0;
+      var sc_security = "f4d123e0";
+      var scJsHost = "https://";
+      document.write(
+        "<sc" +
+          "ript type='text/javascript' src='" +
+          scJsHost +
+          "statcounter.com/counter/counter.js'></" +
+          "script>",
+      );
+    </script>
+    <noscript
+      ><div class="statcounter">
+        <a
+          title="Web Analytics Made Easy -
+Statcounter"
+          href="https://statcounter.com/"
+          target="_blank"
+          ><img
+            class="statcounter"
+            src="https://c.statcounter.com/13019910/0/f4d123e0/0/"
+            alt="Web Analytics Made Easy - Statcounter"
+            referrerpolicy="no-referrer-when-downgrade"
+        /></a></div
+    ></noscript>
+    <!-- End of Statcounter Code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+  </body>
+</html>
